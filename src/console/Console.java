@@ -6,31 +6,25 @@ import java.util.Scanner;
  * @author Stanislava Kaukova(sisiivanovva@gmail.com)
  */
 public class Console {
-    private Scanner value = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public String readString() {
-        String string = value.next();
+        String string = scanner.next();
         return string;
     }
 
     public int readInt() {
-        int num = value.nextInt();
+        int num = scanner.nextInt();
         return num;
     }
 
     public char readChar() {
-        char character = value.next().charAt(3);
+        char character = scanner.next().charAt(0);
         return character;
     }
 
     public float readFloat() {
-        float number = value.nextFloat();
+        float number = scanner.nextFloat();
         return number;
-    }
-
-    public String closeScanner() {
-        String msg = "The Scanner is closed!";
-        value.close();
-        return msg;
     }
 }

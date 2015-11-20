@@ -18,9 +18,10 @@ public class Demo {
             System.out.println(value.readChar());
             System.out.println("Enter float:");
             System.out.println(value.readFloat());
-            System.out.println(value.closeScanner());
         } catch (InputMismatchException e) {
             System.out.println("The enetered value is invalid!");
+        }catch (StringIndexOutOfBoundsException ex){
+            System.out.println("The enetered character is missing!");
         }
     }
 }
