@@ -19,7 +19,6 @@ public class File {
             InputStreamReader reader = new InputStreamReader(System.in);
             in = new BufferedReader(reader);
             out = Files.newBufferedWriter(path, charset);
-            InputStream is = getClass().getResourceAsStream("file.jar");
             String text;
             do {
                 text = in.readLine();
