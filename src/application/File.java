@@ -1,31 +1,38 @@
 package application;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author Stanislava Kaukova(sisiivanovva@gmail.com)
  */
 public class File {
-  public void readAndWrite() throws IOException {
-    InputStreamReader in = null;
-    FileWriter out = null;
-    try {
-      in = new InputStreamReader(System.in);
-      out = new FileWriter("./src/application/file.txt");
-      char text;
-      do {
-        text = (char) in.read();
-        out.write(text);
-      } while (text != '.');
-    } finally {
-      if (in != null) {
-        in.close();
-      }
-      if (out != null) {
-        out.close();
-      }
+    public void readConsoleWriteFile() throws IOException {
+        BufferedReader in = null;
+        BufferedWriter out = null;
+        Path path = Paths.get(".\\src\\application\\file");
+        Charset charset = Charset.forName("US-ASCII");
+        try {
+            InputStreamReader reader = new InputStreamReader(System.in);
+            in = new BufferedReader(reader);
+            out = Files.newBufferedWriter(path, charset);
+            InputStream is = getClass().getResourceAsStream("file.jar");
+            String text;
+            do {
+                text = in.readLine();
+                out.append("\n");
+                out.write(text);
+            } while (!text.equals("@") && !text.equals("/"));
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+        }
     }
-  }
 }
