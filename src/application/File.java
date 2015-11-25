@@ -14,17 +14,15 @@ public class File {
   private BufferedReader in;
   private Writer out;
 
-  public void readConsolewriteFile(Reader reader, String separator, Path path) throws IOException {
-    Charset charset = Charset.forName("UTF-8");
+  public void readConsolewriteFile(Reader reader, String separator, Writer writer) throws IOException {
     try {
       in = new BufferedReader(reader);
-      out = Files.newBufferedWriter(path, charset);
+      out = new BufferedWriter(writer);
       String line;
-      do {
-        line = in.readLine();
+      while(!(line=in.readLine()).matches(separator)) {
         out.write(line);
         out.write("\n");
-      } while (!line.equals(separator));
+      }
     } finally {
       if (in != null) {
         in.close();
