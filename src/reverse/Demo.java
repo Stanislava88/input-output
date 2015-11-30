@@ -8,7 +8,6 @@ import java.io.IOException;
 public class Demo {
   public static void main(String[] args) throws IOException {
     File file = new File("file.txt");
-    file.read();
     file.reverse();
   }
 }
