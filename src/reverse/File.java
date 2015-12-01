@@ -13,14 +13,21 @@ public class File {
   private String fileName;
 
   public File(String fileName) {
+
     this.fileName = fileName;
   }
+
   public void reverse() throws IOException {
     File buf = new File(fileName);
     StringBuffer buffer = buf.read();
     BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-    writer.write(buffer.toString());
-    writer.close();
+    try {
+      writer.write(buffer.toString());
+    } finally {
+      if (writer != null) {
+        writer.close();
+      }
+    }
   }
 
   private StringBuffer read() throws IOException {

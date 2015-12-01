@@ -14,7 +14,7 @@ public class Demo {
       File app = new File("test.txt");
       System.out.println("Enter text!");
       BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-       app.append(reader, "@");
+      app.append(reader, "@");
     } catch (IOException ex) {
       System.out.println("Exception occur");
     }

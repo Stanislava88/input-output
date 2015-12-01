@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public class Demo {
   public static void main(String[] args) throws IOException {
-    File file = new File("file.txt");
+    File file = new File("reverse.txt");
     file.reverse();
   }
 }
