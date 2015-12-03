@@ -12,17 +12,22 @@ import java.nio.file.Paths;
  */
 public class Demo {
   public static void main(String[] args) throws IOException {
+    Path source = Paths.get("source.txt");
+    Path destination = Paths.get("destination.txt");
+    FileInputStream input = new FileInputStream(String.valueOf(source));
+    FileOutputStream output = new FileOutputStream(String.valueOf(destination));
     try {
+      int startByte = 2;
+      int limit = 30;
       TransferObject obj = new TransferObject();
-      Path source = Paths.get("source.txt");
-      Path destination = Paths.get("destination.txt");
-      FileInputStream input = new FileInputStream(String.valueOf(source));
-      FileOutputStream output = new FileOutputStream(String.valueOf(destination));
-      int startByte =3;
-      int limit=50;
-      System.out.println(obj.transferLimit(input, output, startByte,limit));
-    } catch (FileNotFoundException ex) {
-      System.out.println(("The file doesn't found. Please check the file name!"));
+      System.out.println(obj.transfer(input, output, startByte, limit));
+    } finally {
+      if (input != null) {
+        input.close();
+      }
+      if (output != null) {
+        output.close();
+      }
     }
   }
 }

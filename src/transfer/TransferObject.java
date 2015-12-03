@@ -8,7 +8,7 @@ import java.io.OutputStream;
  * @author Stanislava Kaukova(sisiivanovva@gmail.com)
  */
 public class TransferObject {
-  public int transferLimit(InputStream in, OutputStream out, long startByte, int limit) throws IOException {
+  public int transfer(InputStream in, OutputStream out, long startByte, int limit) throws IOException {
     int count = 0;
     int data;
     in.skip(startByte);
@@ -16,8 +16,6 @@ public class TransferObject {
       out.write(data);
       count++;
     }
-    in.close();
-    out.close();
     return count;
   }
 }
