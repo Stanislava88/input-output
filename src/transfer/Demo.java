@@ -18,9 +18,9 @@ public class Demo {
       Path destination = Paths.get("destination.txt");
       FileInputStream input = new FileInputStream(String.valueOf(source));
       FileOutputStream output = new FileOutputStream(String.valueOf(destination));
-      int startByte = 1;
-      int limit=10;
-      obj.transferLimit(input, output, startByte,limit);
+      int startByte =3;
+      int limit=50;
+      System.out.println(obj.transferLimit(input, output, startByte,limit));
     } catch (FileNotFoundException ex) {
       System.out.println(("The file doesn't found. Please check the file name!"));
     }
