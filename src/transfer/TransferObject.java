@@ -8,16 +8,11 @@ import java.io.OutputStream;
  * @author Stanislava Kaukova(sisiivanovva@gmail.com)
  */
 public class TransferObject {
-  public int transfer(InputStream in, OutputStream out, long startByte, int limit) throws IOException {
-    int count = 0;
-    byte[] data = new byte[] {};
+  public void transfer(InputStream in, OutputStream out, int startByte, int limit) throws IOException {
+    byte[] data = new byte[limit];
     in.skip(startByte);
-    do {
-      in.read(data, 0, data.length);
-      out.write(in.read());
-      count++;
-    } while (data.length != -1 && count < limit);
-    return count;
+    int c = in.read(data);
+    out.write(data, 0, c);
   }
 }
 
