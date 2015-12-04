@@ -18,7 +18,7 @@ public class Demo {
     FileOutputStream output = new FileOutputStream(String.valueOf(destination));
     try {
       int startByte = 2;
-      int limit = 30;
+      int limit = 20;
       TransferObject obj = new TransferObject();
       System.out.println(obj.transfer(input, output, startByte, limit));
     } finally {

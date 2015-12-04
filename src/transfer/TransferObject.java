@@ -10,12 +10,13 @@ import java.io.OutputStream;
 public class TransferObject {
   public int transfer(InputStream in, OutputStream out, long startByte, int limit) throws IOException {
     int count = 0;
-    int data;
+    byte[] data = new byte[] {};
     in.skip(startByte);
-    while ((data = in.read()) != -1 && count < limit) {
-      out.write(data);
+    do {
+      in.read(data, 0, data.length);
+      out.write(in.read());
       count++;
-    }
+    } while (data.length != -1 && count < limit);
     return count;
   }
 }
