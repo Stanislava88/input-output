@@ -17,10 +17,10 @@ public class Demo {
     FileInputStream input = new FileInputStream(String.valueOf(source));
     FileOutputStream output = new FileOutputStream(String.valueOf(destination));
     try {
-      int startByte = 0;
+      int startByte = 5;
       TransferObject obj = new TransferObject();
 //      obj.transfer(input, output, startByte);
-      obj.transfer(input, output, startByte, 5);
+      obj.transfer(input, output, startByte, 200);
     } finally {
       if (input != null) {
         input.close();

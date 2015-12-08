@@ -9,7 +9,7 @@ import java.io.OutputStream;
  */
 public class TransferObject {
   public void transfer(InputStream in, OutputStream out) throws IOException {
-    int size=in.available();
+    int size = in.available();
     byte[] data = new byte[size];
     int c = in.read(data);
     if (c != -1) {
@@ -22,9 +22,15 @@ public class TransferObject {
     byte[] data = new byte[size];
     int c = in.read(data);
     if (c != -1) {
-      out.write(data, startByte, limit);
+      if (startByte + limit > size) {
+        out.write(data, startByte, size - startByte);
+      } else {
+        out.write(data, startByte, limit);
+      }
     }
   }
 }
+
+
 
 
