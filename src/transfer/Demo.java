@@ -17,7 +17,7 @@ public class Demo {
     FileInputStream input = new FileInputStream(String.valueOf(source));
     FileOutputStream output = new FileOutputStream(String.valueOf(destination));
     try {
-      int startByte = 2;
+      int startByte = 0;
       TransferObject obj = new TransferObject();
 //      obj.transfer(input, output, startByte);
       obj.transfer(input, output, startByte, 5);
