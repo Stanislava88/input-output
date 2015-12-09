@@ -13,8 +13,10 @@ public class TransferObject {
   public void transfer(InputStream in, OutputStream out) throws IOException {
     byte[] data = new byte[1024];
     int c;
-    while ((c = in.read(data)) > 0)
+    while ((c = in.read(data)) > 0) {
       out.write(data, 0, c);
+      out.flush();
+    }
   }
 
   public void transfer(InputStream in, OutputStream out, int startByte, int limit) throws IOException {
@@ -25,6 +27,7 @@ public class TransferObject {
         out.write(data, startByte, c);
       } else {
         out.write(data, startByte, limit);
+        out.flush();
       }
     }
   }
