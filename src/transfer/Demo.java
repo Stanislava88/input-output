@@ -20,7 +20,7 @@ public class Demo {
             int startByte = 0;
             TransferObject obj = new TransferObject();
 //            obj.transfer(input, output);
-            obj.transfer(input, output, startByte, 200);
+            obj.transfer(input, output, startByte, 10);
         } finally {
             if (input != null) {
                 input.close();
