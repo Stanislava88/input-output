@@ -1,5 +1,7 @@
 package transfer;
 
+import com.google.common.io.ByteStreams;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,8 +17,8 @@ public class TransferObject {
     int c;
     while ((c = in.read(data)) > 0) {
       out.write(data, 0, c);
-      out.flush();
     }
+    out.flush();
   }
 
   public void transfer(InputStream in, OutputStream out, int startByte, int limit) throws IOException {
@@ -27,9 +29,9 @@ public class TransferObject {
         out.write(data, startByte, c);
       } else {
         out.write(data, startByte, limit);
-        out.flush();
       }
     }
+    out.flush();
   }
 }
 
