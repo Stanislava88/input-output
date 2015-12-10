@@ -1,12 +1,9 @@
 package transfer;
 
-import com.google.common.io.ByteStreams;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 
 /**
  * @author Stanislava Kaukova(sisiivanovva@gmail.com)
