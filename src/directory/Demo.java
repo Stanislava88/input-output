@@ -7,11 +7,16 @@ import java.io.IOException;
  * @author Stanislava Kaukova(sisiivanovva@gmail.com)
  */
 public class Demo {
-  public static void main(String[] args) throws IOException, DirectoryNotFound {
+  public static void main(String[] args) throws IOException {
     DirectoryBrowser browser = new DirectoryBrowser();
-    String path = "/home/clouway/workspace/idea/input-output";
-    for (String dirs : browser.listContent(path)) {
-      System.out.println(dirs);
+    String path = "./source.txt";
+    try {
+      for (String dirs : browser.listContent(path)) {
+        System.out.println(dirs);
+      }
+    } catch (NullPointerException ex) {
+      System.out.println("This is not file or directory");
     }
   }
 }
+
