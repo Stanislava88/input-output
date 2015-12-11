@@ -2,7 +2,13 @@ package directory;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,23 +16,28 @@ import java.util.List;
  * @author Stanislava Kaukova(sisiivanovva@gmail.com)
  */
 public class DirectoryBrowser {
-  public List<String> listContent(String path) throws IOException {
-    List<String> listOfDir = new ArrayList<String>();
-    File dir = new File(path);
-    if (dir.isFile()) {
-      listOfDir.add("This is file");
+  public List<String> listContent(String path) throws IOException, FileException {
+    Path dirs = Paths.get(path);
+    dirs.toRealPath();
+    List<String> listOfDir = new ArrayList<>();
+    if (Files.isRegularFile(dirs)) {
+      throw new FileException("The path shows file.");
     } else {
-      File[] dirs = dir.listFiles();
-      for (int i = 0; i < dirs.length; i++) {
-        if (dirs[i].isDirectory()) {
-          listOfDir.add("Dir:" + dirs[i].getName());
+      try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirs)) {
+        for (Path paths : stream) {
+          if (Files.isDirectory(paths)) {
+            listOfDir.add("Dir:" + paths.getFileName());
+          }
+          if (Files.isRegularFile(paths)) {
+            listOfDir.add("File:" + paths.getFileName());
+          }
         }
-        if (dirs[i].isFile()) {
-          listOfDir.add("File:" + dirs[i].getName());
-        }
+      } catch (NoSuchFileException ex) {
+        ex.printStackTrace();
       }
     }
     return listOfDir;
   }
 }
+
 
