@@ -2,7 +2,6 @@ package directory;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 
 
 /**
@@ -13,13 +12,9 @@ public class Demo {
     try {
       DirectoryBrowser browser = new DirectoryBrowser();
       String path = ".";
-      System.out.println("List of directories in directory:" + path);
-      for (Path dirs : browser.listContent(path)) {
-        System.out.println(dirs);
-      }
-      System.out.println("List of files in directory:" + path);
-      for (Path file : browser.listOfFile(path)) {
-        System.out.println(file);
+      System.out.println("Directory" + " " + path + " " + "contains:");
+      for (String dir : browser.listContent(path)) {
+        System.out.println(dir);
       }
     } catch (NoSuchFileException ex) {
       System.out.println("Wrong file was selected. Please choose another path:" + " " + ex);

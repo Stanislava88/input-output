@@ -15,40 +15,42 @@ import java.util.List;
  * @author Stanislava Kaukova(sisiivanovva@gmail.com)
  */
 public class DirectoryBrowser {
-  public List<Path> listContent(String path) throws IOException, FileException {
+  public List<String> listContent(String path) throws IOException, FileException {
     Path dirs = Paths.get(path);
     dirs.toRealPath();
-    List<Path> listOfDir = new ArrayList<>();
+    List<String> listOfFiles = listOfDirectory(path);
     if (Files.isRegularFile(dirs)) {
       throw new FileException("The path shows file.");
     } else {
       try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirs)) {
-        for (Path paths : stream) {
-          if (Files.isDirectory(paths)) {
-            listOfDir.add(paths.getFileName());
+        listOfFiles.add("Files:");
+        for (Path file : stream) {
+          if (Files.isRegularFile(file)) {
+            listOfFiles.add(file.getFileName().toString());
           }
         }
       } catch (NoSuchFileException ex) {
         ex.printStackTrace();
       }
     }
-    return listOfDir;
+    return listOfFiles;
   }
 
-  public List<Path> listOfFile(String path) throws IOException {
+  private List<String> listOfDirectory(String path) throws IOException {
     Path paths = Paths.get(path);
-    List<Path> listOfFile = new ArrayList<>();
+    List<String> listOfDir = new ArrayList<>();
     try (DirectoryStream<Path> stream = Files.newDirectoryStream(paths)) {
-      for (Path file : stream) {
-        if (Files.isRegularFile(file)) {
-          listOfFile.add(file.getFileName());
+      listOfDir.add("Directories:");
+      for (Path dir : stream) {
+        if (Files.isDirectory(dir)) {
+          listOfDir.add(dir.getFileName().toString());
         }
       }
       stream.close();
     } catch (FileNotFoundException ex) {
       ex.printStackTrace();
     }
-    return listOfFile;
+    return listOfDir;
   }
 }
 
