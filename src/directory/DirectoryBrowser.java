@@ -20,7 +20,6 @@ public class DirectoryBrowser {
     dirs.toRealPath();
     List<String> listOfFiles = listOfDirectory(path);
     try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirs)) {
-      listOfFiles.add("Files:");
       for (Path file : stream) {
         if (Files.isRegularFile(file)) {
           listOfFiles.add(file.getFileName().toString());
