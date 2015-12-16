@@ -38,7 +38,6 @@ public class DirectoryBrowser {
       throw new FileException("The path shows file.");
     } else {
       try (DirectoryStream<Path> stream = Files.newDirectoryStream(paths)) {
-        listOfDir.add("Directories:");
         for (Path dir : stream) {
           if (Files.isDirectory(dir)) {
             listOfDir.add(dir.getFileName().toString());

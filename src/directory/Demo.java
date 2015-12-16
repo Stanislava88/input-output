@@ -11,7 +11,7 @@ public class Demo {
   public static void main(String[] args) throws IOException {
     try {
       DirectoryBrowser browser = new DirectoryBrowser();
-      String path = "source.txt";
+      String path = ".";
       System.out.println("Directory" + " " + path + " " + "contains:");
       for (String dir : browser.listContent(path)) {
         System.out.println(dir);
